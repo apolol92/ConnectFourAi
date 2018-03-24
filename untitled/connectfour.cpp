@@ -82,15 +82,15 @@ int ConnectFour::isGameFinished()
         return -1;
     }
     //Check for row-winnings
-    for(int row = 0; row < this->MAX_ROW; row++)
+    for(int i = 0; i < this->fields.length(); i++)
     {
-        QList<Field> currentRowFields = this->getFieldsInRow(row);
+        QList<Field> currentRowFields = this->getFieldsInRow(this->fields[i]);
         int counter = 0;
-        for(int i = 0; i < currentRowFields.length(); i++)
+        for(int d = 0; d < currentRowFields.length(); d++)
         {
-            for(int z = i+1; z < currentRowFields.length();z++)
+            for(int z = d+1; z < currentRowFields.length();z++)
             {
-                if(currentRowFields[i].getColDistance(currentRowFields[z])==1+counter)
+                if(currentRowFields[d].getColDistance(currentRowFields[z])==1+counter)
                 {
                     counter++;
                     if(counter==4)
@@ -106,15 +106,15 @@ int ConnectFour::isGameFinished()
         }
     }
     //Check for col-winnings
-    for(int col = 0; col < this->MAX_COL; col++)
+    for(int i = 0; i < this->fields.length(); i++)
     {
         int counter = 0;
-        QList<Field> currentColFields = this->getFieldsInCol(col);
-        for(int i = 0; i < currentColFields.length(); i++)
+        QList<Field> currentColFields = this->getFieldsInCol(fields[i]);
+        for(int d = 0; d < currentColFields.length(); d++)
         {
-            for(int z = i+1; z < currentColFields.length();z++)
+            for(int z = d+1; z < currentColFields.length();z++)
             {
-                if(currentColFields[i].getRowDistance(currentColFields[z])==counter+1)
+                if(currentColFields[d].getRowDistance(currentColFields[z])==counter+1)
                 {
                     counter++;
                     if(counter==4)
@@ -268,27 +268,37 @@ QList<Field> ConnectFour::sortFieldsByCol(QList<Field> fields)
     return fields;
 }
 
-QList<Field> ConnectFour::getFieldsInRow(int row, enum color c)
+QList<Field> ConnectFour::getFieldsInRow(Field field)
 {
     QList<Field> rFields;
-    foreach(Field f, this->fields)
+    rFields.append(field);
+    for(int i = 0; i < this->fields.length();i++)
     {
-        if(f.getRow()==row && f.getColor() == c)
+        if(fields[i].isColliding(field)==false)
         {
-            rFields.append(Field(f));
+            if(fields[i].sameColor(field)&&fields[i].isSameRow(field))
+            {
+                rFields.append(fields[i]);
+
+            }
         }
     }
     return sortFieldsByCol(rFields);
 }
 
-QList<Field> ConnectFour::getFieldsInCol(int col, color c)
+QList<Field> ConnectFour::getFieldsInCol(Field field)
 {
     QList<Field> cFields;
-    foreach(Field f, this->fields)
+    cFields.append(field);
+    for(int i = 0; i < this->fields.length();i++)
     {
-        if(f.getCol()==col  && f.getColor() == c)
+        if(fields[i].isColliding(field)==false)
         {
-            cFields.append(Field(f));
+            if(fields[i].sameColor(field)&&fields[i].isSameCol(field))
+            {
+                cFields.append(fields[i]);
+
+            }
         }
     }
     return sortFieldsByRow(cFields);

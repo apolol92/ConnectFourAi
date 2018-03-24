@@ -11,8 +11,8 @@ private:
     enum color lastTurn;
     const int MAX_ROW = 6;
     const int MAX_COL = 7;
-    QList<Field> getFieldsInRow(int row, color c);
-    QList<Field> getFieldsInCol(int col, color c);
+    QList<Field> getFieldsInRow(Field field);
+    QList<Field> getFieldsInCol(Field field);
     QList<Field> getAllSameTopLeftRightBotField(Field field);
     QList<Field> getAllSameBotLeftRightTopField(Field field);
     QList<Field> sortFieldsByRow(QList<Field> fields);
