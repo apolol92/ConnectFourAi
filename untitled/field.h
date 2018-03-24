@@ -23,6 +23,7 @@ public:
     bool isSameRow(Field f);
     bool isSameDiagonaleLeftTop2RightBot(Field f);
     bool isSameDiagonaleLeftBot2RightTop(Field f);
+    bool isColliding(Field f);
 
 };
 

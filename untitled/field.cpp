@@ -48,9 +48,13 @@ bool Field::isSameRow(Field f)
 }
 bool Field::isSameDiagonaleLeftTop2RightBot(Field f)
 {
-    return (this->row-this->col) == (f.row - f.col);
+    return (this->row+this->col) == (f.row + f.col);
 }
 bool Field::isSameDiagonaleLeftBot2RightTop(Field f)
 {
-    return (this->row+this->col) == (f.row + f.col);
+    return (this->row-this->col) == (f.row - f.col);
+}
+
+bool Field::isColliding(Field f) {
+    return (this->row == f.row) && (this->col == f.col);
 }
