@@ -24,6 +24,8 @@ private Q_SLOTS:
     void testIsNotSameDiagonaleLeftBot2RightTop();
     void testIsColliding();
     void testIsNotColliding();
+    void testSameColor();
+    void testNotSameColor();
 };
 
 testField::testField()
@@ -109,6 +111,18 @@ void testField::testIsNotColliding()
 {
     Field f1(1,2,color::blue), f2(1,1,color::blue);
     QCOMPARE(false, f1.isColliding(f2));
+}
+
+void testField::testSameColor()
+{
+    Field f1(1,2,color::red), f2(3,5, color::red);
+    QCOMPARE(true, f1.sameColor(f2));
+}
+
+void testField::testNotSameColor()
+{
+    Field f1(1,2,color::blue), f2(3,5, color::red);
+    QCOMPARE(false, f1.sameColor(f2));
 }
 
 QTEST_APPLESS_MAIN(testField)

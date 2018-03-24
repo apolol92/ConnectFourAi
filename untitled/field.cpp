@@ -7,6 +7,13 @@ Field::Field()
     this->c = color::blue;
 }
 
+Field::Field(const Field &f)
+{
+    this->row = f.row;
+    this->col = f.col;
+    this->c = f.c;
+}
+
 Field::Field(int row, int col, enum color c)
 {
     this->row = row;
@@ -57,4 +64,19 @@ bool Field::isSameDiagonaleLeftBot2RightTop(Field f)
 
 bool Field::isColliding(Field f) {
     return (this->row == f.row) && (this->col == f.col);
+}
+
+bool Field::sameColor(Field f)
+{
+    return this->getColor() == f.getColor();
+}
+
+int Field::getColDistance(Field f)
+{
+    return f.col-this->col;
+}
+
+int Field::getRowDistance(Field f)
+{
+    return f.row - this->row;
 }

@@ -2,6 +2,7 @@
 #define FIELD_H
 
 
+
 enum color {blue, red};
 
 class Field
@@ -12,6 +13,7 @@ private:
     enum color c;
 public:
     Field();
+    Field(const Field &f);
     Field(int row, int col, enum color c);
     int getRow();
     int getCol();
@@ -24,6 +26,9 @@ public:
     bool isSameDiagonaleLeftTop2RightBot(Field f);
     bool isSameDiagonaleLeftBot2RightTop(Field f);
     bool isColliding(Field f);
+    bool sameColor(Field f);
+    int getColDistance(Field f);
+    int getRowDistance(Field f);
 
 };
 
