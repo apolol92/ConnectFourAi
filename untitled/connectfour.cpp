@@ -93,9 +93,16 @@ int ConnectFour::isGameFinished()
                 if(currentRowFields[d].getColDistance(currentRowFields[z])==1+counter)
                 {
                     counter++;
-                    if(counter==4)
+                    if(counter==3)
                     {
-                        return true;
+                        if(this->currentTurn()==color::blue)
+                        {
+                            return color::red;
+                        }
+                        else
+                        {
+                            return color::blue;
+                        }
                     }
                 }
                 else{
@@ -117,9 +124,16 @@ int ConnectFour::isGameFinished()
                 if(currentColFields[d].getRowDistance(currentColFields[z])==counter+1)
                 {
                     counter++;
-                    if(counter==4)
+                    if(counter==3)
                     {
-                        return true;
+                        if(this->currentTurn()==color::blue)
+                        {
+                            return color::red;
+                        }
+                        else
+                        {
+                            return color::blue;
+                        }
                     }
 
                 }
@@ -144,9 +158,16 @@ int ConnectFour::isGameFinished()
                 if(currentDiagonaleFields[d].getColDistance(currentDiagonaleFields[z])==1+counter)
                 {
                     counter++;
-                    if(counter==4)
+                    if(counter==3)
                     {
-                        return true;
+                        if(this->currentTurn()==color::blue)
+                        {
+                            return color::red;
+                        }
+                        else
+                        {
+                            return color::blue;
+                        }
                     }
                 }
                 else{
@@ -169,9 +190,16 @@ int ConnectFour::isGameFinished()
                 if(currentDiagonaleFields[d].getColDistance(currentDiagonaleFields[z])==1+counter)
                 {
                     counter++;
-                    if(counter==4)
+                    if(counter==3)
                     {
-                        return true;
+                        if(this->currentTurn()==color::blue)
+                        {
+                            return color::red;
+                        }
+                        else
+                        {
+                            return color::blue;
+                        }
                     }
                 }
                 else{
@@ -181,7 +209,11 @@ int ConnectFour::isGameFinished()
             }
         }
     }
-    return false;
+    if(this->fields.length()==this->MAX_COL*MAX_ROW)
+    {
+        return 2;
+    }
+    return -1;
 }
 
 QList<Field> ConnectFour::getAllSameBotLeftRightTopField(Field field)

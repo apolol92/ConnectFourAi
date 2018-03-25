@@ -11,6 +11,9 @@ private:
     enum color lastTurn;
     const int MAX_ROW = 6;
     const int MAX_COL = 7;
+
+public:
+    ConnectFour();
     QList<Field> getFieldsInRow(Field field);
     QList<Field> getFieldsInCol(Field field);
     QList<Field> getAllSameTopLeftRightBotField(Field field);
@@ -19,8 +22,6 @@ private:
     QList<Field> sortFieldsByCol(QList<Field> fields);
     QList<Field> sortFieldTopLeftRightBotDiagonale(QList<Field> fields);
     QList<Field> sortFieldBotLeftRightTopDiagonale(QList<Field> fields);
-public:
-    ConnectFour();
     bool isColumnFull(int col);
     int getNextFreeRowInCol(int col);
     enum color currentTurn();
