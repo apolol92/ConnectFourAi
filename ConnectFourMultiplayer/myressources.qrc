@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/myFiles">
+        <file>blue_disk.png</file>
+        <file>blue_disk.jpg</file>
+    </qresource>
+</RCC>

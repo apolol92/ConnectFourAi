@@ -23,41 +23,11 @@ bool ConnectFour::isColumnFull(int col)
 
 enum color ConnectFour::currentTurn()
 {
-    int counter = 0;
-    foreach (Field f, this->fields)
+    if(lastTurn==color::red)
     {
-        if(f.getColor()==color::blue)
-        {
-            counter++;
-
-        }
-        else if(f.getColor()==color::red)
-        {
-            counter--;
-        }
-    }
-    if(counter>0)
-    {
-        this->lastTurn = color::blue;
-        return color::red;
-    }
-    else if(counter < 0)
-    {
-        this->lastTurn = color::red;
         return color::blue;
     }
-    else {
-        if(this->lastTurn == color::red)
-        {
-            this->lastTurn = color::blue;
-            return color::blue;
-        }
-        else
-        {
-            this->lastTurn = color::red;
-            return color::red;
-        }
-    }
+    return color::red;
 }
 
 int ConnectFour::getNextFreeRowInCol(int col)
@@ -338,9 +308,11 @@ QList<Field> ConnectFour::getFieldsInCol(Field field)
 
 bool ConnectFour::putFieldInCol(int col, enum color c)
 {
+
     if(this->isColumnFull(col)==false){
         int nextFreeRow = this->getNextFreeRowInCol(col);
         this->fields.append(Field(nextFreeRow,col,c));
+        this->lastTurn = c;
         return true;
     }
     return false;
@@ -368,5 +340,14 @@ bool ConnectFour::isSameGame(ConnectFour game2)
         return true;
     }
     return false;
+}
+
+void ConnectFour::reset()
+{
+    for(int i=this->fields.length()-1; i >= 0; i--)
+    {
+        this->fields.removeAt(i);
+    }
+    this->lastTurn = color::red;
 }
 

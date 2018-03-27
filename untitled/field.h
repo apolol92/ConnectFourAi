@@ -29,6 +29,8 @@ public:
     bool sameColor(Field f);
     int getColDistance(Field f);
     int getRowDistance(Field f);
+    int getGridRow();
+    int getGridCol();
 
 };
 

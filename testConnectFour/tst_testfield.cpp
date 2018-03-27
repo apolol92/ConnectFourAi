@@ -26,6 +26,7 @@ private Q_SLOTS:
     void testIsNotColliding();
     void testSameColor();
     void testNotSameColor();
+    void testGetGridRow();
 };
 
 testField::testField()
@@ -124,7 +125,11 @@ void testField::testNotSameColor()
     Field f1(1,2,color::blue), f2(3,5, color::red);
     QCOMPARE(false, f1.sameColor(f2));
 }
-
+void testField::testGetGridRow()
+{
+    Field f1(0,2,color::blue);
+    QCOMPARE(5,f1.getGridRow());
+}
 QTEST_APPLESS_MAIN(testField)
 
 #include "tst_testfield.moc"

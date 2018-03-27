@@ -2,8 +2,8 @@
 
 Field::Field()
 {
-    this->row = 0;
-    this->col = 0;
+    this->row = -1;
+    this->col = -1;
     this->c = color::blue;
 }
 
@@ -79,4 +79,13 @@ int Field::getColDistance(Field f)
 int Field::getRowDistance(Field f)
 {
     return f.row - this->row;
+}
+
+int Field::getGridRow()
+{
+    return (5-this->row);
+}
+int Field::getGridCol()
+{
+    return this->col;
 }
