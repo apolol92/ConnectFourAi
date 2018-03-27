@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     signalMapper = new QSignalMapper(this);
     for(int r = 6, c=0; c <7;c++)
     {
-        QPushButton *btn = new QPushButton("Add");
+        QPushButton *btn = new QPushButton("Add [BLUE]");
 
 
 
@@ -111,7 +111,13 @@ void MainWindow::onAddClicked(int num)
             }
             this->cFour.reset();
         }
-
+        for(int i = 0; i < this->btList.length(); i++)
+        {
+            if(this->cFour.currentTurn()==color::blue)
+                this->btList[i]->setText("Add [BLUE]");
+            else
+                this->btList[i]->setText("Add [RED]");
+        }
     }
 
 
